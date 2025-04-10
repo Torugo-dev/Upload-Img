@@ -46,7 +46,7 @@ async function fetchPhotos() {
         
         // Retorna o Array de fotos ou vazio se não houver dados
         return data.pictures || []
-    }   catch (eror) {
+    }   catch (error) {
         // Em caso de erro, mostra no console log
         console.error("Falha ao carregar foto", error);
         // Mostra a notificação de erro para o User
