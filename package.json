@@ -7,7 +7,7 @@
     "start": "nodemon ./app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Vitor Hugo",
   "license": "ISC",
   "description": "",
   "dependencies": {
