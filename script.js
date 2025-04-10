@@ -95,6 +95,7 @@ const elements = {
     return card;
   }
  
+  
   // Função de gerenciamento (CRUD), envia a foto para o servidor com o FormData
   async function uploadNewPhoto(formData) {
     try {
