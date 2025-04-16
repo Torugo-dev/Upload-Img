@@ -28,6 +28,25 @@ exports.create = async (req, res) => {
   }
 };
 
+// Função para deletar uma imagem pelo ID
+exports.delete = async (req, res) => {
+  try {
+    // Busca e remove a imagem pelo ID fornecido
+    const picture = await Picture.findByIdAndDelete(req.params.id);
+
+    // Se a imagem não for encontrada, retorna um erro 404
+    if (!picture) {
+      return res.status(404).json({ message: "Imagem não encontrada" });
+    }
+
+    // Retorna uma mensagem de sucesso
+    res.json({ message: "Imagem deletada com sucesso!" });
+  } catch (err) {
+    // Em caso de erro, retorna uma resposta de erro com código 500
+    res.status(500).json({ message: "Erro ao deletar imagem!" });
+  }
+};
+
 // Função para encontrar todas as imagens no banco de dados
 exports.findAll = async (req, res) => {
   try {

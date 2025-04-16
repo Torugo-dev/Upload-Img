@@ -19,5 +19,8 @@ router.get("/", PictureController.findAll);
 // Rota para obter uma imagem específica
 router.get("/:id/image", PictureController.getImage);
 
+// Definindo a rota DELETE para deletar uma imagem pelo ID
+router.delete("/:id", PictureController.delete); 
+
 // Exportando o arquivo para utilizar no app.js
 module.exports = router;

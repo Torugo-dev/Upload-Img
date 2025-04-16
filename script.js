@@ -14,6 +14,9 @@ const elements = {
 const config = {
     apiUrl: "http://localhost:4000/pictures", // Endpoint da API
     /* Colocar img Base 64*/
+    // Imagem padrão para erros
+  placeholderImage:
+  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2VlZWVlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5OTk5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5FcnJvIGFvIGNhcnJlZ2FyIGltYWdlbTwvdGV4dD48L3N2Zz4=",
 };
 
 // Função de notificação temporária
@@ -90,9 +93,33 @@ function createPhotoCardElement(photo) {
            <div class="photo-info">
                <div class="photo-name">${photo.name}</div>
            </div>
+           <button class="btn-delete" data-id="${photo._id}">Excluir</button></div>
            `;
 
+           // Adiciona evento no botão de excluir
+           const deleteButton = card.querySelector(".btn-delete");
+           deleteButton.addEventListener("click", () => deletePhoto(photo._id));
+
     return card;
+}
+ 
+// Função para deletar uma foto
+async function deletePhoto(photoId) {
+    try {
+        const response = await fetch(`${config.apiUrl}/${photoId}`, {
+            method: "DELETE"
+        });
+
+        if (!response.ok) {
+            throw new Error("Erro ao excluir a imagem");
+        }
+
+        showNotification("Foto excluída com sucesso!");
+        loadAndDisplayPhotos(); // Recarrega a galeria
+    } catch (error) {
+        console.error("Erro ao excluir a imagem:", error);
+        showNotification("Erro ao excluir a imagem", "error");
+    }
 }
 
 // Função de gerenciamento (CRUD), envia a foto para o servidor com o FormData
@@ -124,6 +151,8 @@ async function uploadNewPhoto(formData) {
         showNotification("Falha ao enviar foto", "error");
     }
 }
+
+
 
 /* Função controle de Interface */
 
