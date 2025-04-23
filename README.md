@@ -60,7 +60,5 @@ O banco de dados MongoDB utiliza o seguinte esquema para armazenar imagens:
 }
 ```
 
-## Licença
 
-Este projeto está licenciado sob a licença ISC.
 
