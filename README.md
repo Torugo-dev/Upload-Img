@@ -33,3 +33,34 @@ Este projeto é uma aplicação web para upload, exibição e gerenciamento de i
 5. Acesse no navegador:
    ```bash
    http://localhost:<porta_configurada_no_env>
+
+## Endpoints da API
+
+- **POST `/pictures`**: Faz upload de uma nova imagem.
+- **GET `/pictures`**: Retorna todas as imagens.
+- **GET `/pictures/:id/image`**: Retorna a imagem específica pelo ID.
+- **DELETE `/pictures/:id`**: Exclui uma imagem pelo ID.
+
+## Funcionalidades do Frontend
+
+- **Carregamento de Imagens**: As imagens são buscadas da API e exibidas em uma galeria.
+- **Upload de Imagens**: Um modal permite que o usuário envie novas imagens.
+- **Exclusão de Imagens**: Botões de exclusão permitem remover imagens específicas.
+- **Notificações**: Mensagens de sucesso ou erro são exibidas para ações realizadas.
+
+## Estrutura do Banco de Dados
+
+O banco de dados MongoDB utiliza o seguinte esquema para armazenar imagens:
+
+```javascript
+{
+  name: String, // Nome da imagem
+  image: Buffer, // Dados da imagem
+  contentType: String // Tipo de conteúdo (ex.: image/png)
+}
+```
+
+## Licença
+
+Este projeto está licenciado sob a licença ISC.
+
